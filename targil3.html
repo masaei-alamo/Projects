@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table From Array</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: large;
+            background-color: rgb(110, 169, 232);
+        }
+        .cent2 {
+            display: grid;
+            place-items: center;
+        }
+        #table1 {
+            background-color:rgb(65, 110, 165); 
+            margin: 0 auto;
+        }
+        th, td {
+            padding: 10px; 
+            border: 1px solid black;
+        }
+        img {
+            width: 200px; 
+            height: auto;
+            transition: width 0.5s ease; 
+        }
+        img:hover {
+            width: 350px; 
+        }
+        h1 {            
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <div class=cent2>
+        <h1>Table for film screening:</h1><br>
+    
+        <img src="0070.jpg_wh860.jpg" alt="Movie Image"><br><br>
+
+        <table id="table1" border="1"></table><br>
+
+        <hr width="40%">
+        <button onclick="orderByTitleAZ()"> OrderByTitleAZ</button>
+        <button onclick="orderByTitleZA()"> OrderByTitleZA</button><br>
+
+        <button onclick="orderByYearAZ()">orderByYearAZ</button>
+        <button onclick="orderByYearZA()">orderByYearZA</button><br>
+
+        <button onclick="orderByRatingAZ()">orderByRatingAZ</button>
+        <button onclick="orderByRatingZA()">orderByRatingZA</button><br>
+
+        <button onclick="orderByCountryAZ()">orderByCountryAZ</button>
+        <button onclick="orderByCountryZA()">orderByCountryZA</button><br>
+
+        <button onclick="orderByGenreAZ()">orderByGenreAZ</button>
+        <button onclick="orderByGenreZA()">orderByGenreZA </button><br>
+        <hr width="40%">
+
+        title: <input type="text" id="title1" required pattern="[A-Za-z0-9\s]+" title="Only English values (string and int)"><br>
+        year: <input type="text" id="year1" required pattern="[0-9]+" title="Numbers only"><br>
+        rating: <input type="text" id="rating1" required pattern="[0-9]+(\.[0-9]+)?" title="Numbers or float numbers only"><br>
+        country: <input type="text" id="country1" required pattern="[A-Za-z]+" title="String only"><br>
+        genre: <input type="text" id="genre1" required pattern="[A-Za-z]+" title="String only"><br>
+        <button onclick="AddToTable()">Add To Table</button>
+       
+        <div id="data"></div>
+    
+    </div>
+<script>
+        let data = [
+            { title: "the family plan", year: 2023, rating: 8.4, country: "USA", genre: "comedy" },
+            { title: "death whisperer", year: 2023, rating: 8.8, country: "USA", genre: "scary" },
+            { title: "late wedding", year: 2001, rating: 8.7, country: "ISRAEL", genre: "drama" },
+            { title: "red, white and royal blue", year: 2020, rating: 8.8, country: "UK", genre: "romanticism" },
+            { title: "taylor swift: the eras tour", year: 2022, rating: 8.2, country: "USA", genre: "documentary" }
+        ];
+
+        const table = document.getElementById("table1");
+        function showTable(){
+            let str = "<tr><th>title</th><th>year</th><th>rating</th><th>country</th><th>genre</th></tr>";
+            for(let i=0; i < data.length ; i++){
+                str += 
+                "<tr><td>" + 
+                data[i].title +
+                "</td><td>" +
+                data[i].year +
+                "</td><td>"
+                +data[i].rating+
+                "</td><td>" +
+                data[i].country +
+                "</td><td>" +
+                data[i].genre +
+                "</td></tr>";
+
+            }
+            table.innerHTML = str;
+        }
+        showTable();
+
+        function orderByTitleAZ(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.title > y.title) {
+                    check =1;
+                }
+                else if(x.title <y.title) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByTitleZA(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.title < y.title) {
+                    check =1;
+                }
+                else if(x.title > y.title) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByYearAZ(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.year > y.year) {
+                    check =1;
+                }
+                else if(x.year <y.year) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByYearZA(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.year < y.year) {
+                    check =1;
+                }
+                else if(x.year > y.year) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByRatingAZ(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(parseFloat(x.rating) > parseFloat(y.rating)) {
+                    check =1;
+                }
+                else if(parseFloat(x.rating) < parseFloat(y.rating)) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByRatingZA(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(parseFloat(x.rating) < parseFloat(y.rating)) {
+                    check =1;
+                }
+                else if(parseFloat(x.rating) > parseFloat(y.rating)) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByCountryAZ(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.country > y.country) {
+                    check =1;
+                }
+                else if(x.country <y.country) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByCountryZA(){
+           
+
+ data.sort(function(x,y){
+                let check = 0;
+                if(x.country < y.country) {
+                    check =1;
+                }
+                else if(x.country > y.country) {
+                    check
+
+ = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByGenreAZ(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.genre > y.genre) {
+                    check =1;
+                }
+                else if(x.genre <y.genre) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function orderByGenreZA(){
+            data.sort(function(x,y){
+                let check = 0;
+                if(x.genre < y.genre) {
+                    check =1;
+                }
+                else if(x.genre > y.genre) {
+                    check = -1;
+                }
+                return check;
+            })
+            console.log(data);
+            showTable();
+        }
+        function AddToTable(){
+            let title = document.getElementById("title1").value;
+            let year = document.getElementById("year1").value ;
+            let rating = document.getElementById("rating1").value;
+            let country = document.getElementById("country1").value;
+            let genre = document.getElementById("genre1").value;
+            if (title == "" || year == "" || rating == "" || country == "" || genre == "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+            if (!/^[A-Za-z0-9\s]+$/.test(title)) {
+                alert("Please enter a valid title (only English values - can be string and int).");
+                return;
+            }
+            if (!/^\d+$/.test(year)) {
+                alert("Please enter a valid year (only int numbers).");
+                return;
+            }
+            if (!/^\d+(\.\d+)?$/.test(rating)) {
+                alert("Please enter a valid rating (only int or float numbers).");
+                return;
+            }
+            if (!/^[A-Za-z]+$/.test(country)) {
+                alert("Please enter a valid country (only English string values).");
+                return;
+            }
+            if (!/^[A-Za-z]+$/.test(genre)) {
+                alert("Please enter a valid genre (only English string values).");
+                return;
+            }
+            data.push({title:title,year:Number(year),rating:Number(rating),country:country,genre:genre})
+            console.log(data);
+            showTable();
+        }
+</script>
+</body>
+</html>

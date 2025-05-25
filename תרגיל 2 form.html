@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="תרגיל2.css">
+</head>
+<body>
+    <form action="תרגיל 2 afterform.html" method="get" onsubmit="return checkPasswordandEmails()">
+        <h1>Login</h1>
+        <hr>
+         <br /><br />
+        <label> 
+        Username hebrow: <input name="Username hebrow" type="text" required pattern="[א-ת]{0,30}" title="Only hebrow letters"> <br />
+        <br /><br />
+        </label>
+        <label> 
+        Username english: <input name="Username english" type="text" required pattern="[a-zA-Z]{0,30}" title="Only english letters"> <br />
+        <br /><br />
+        </label>
+        <label> 
+        Password 1 : <input name="Password" id="pass1" type="password" required pattern=".{8}" title="Only 8 chars"><br />
+        <br /><br />
+        </label>
+        <label>
+        Password 2 : <input name="Password" id="pass2" type="password" required pattern=".{8}" title="Only 8 chars"><br />
+        <br /><br />
+        </label>
+        <label>
+            Mail 1 : <input name="Mail" id="mail1" type="email" required pattern="[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+"><br />
+            <br /><br />
+            </label>
+            <label>
+            Mail 2 : <input name="Mail" id="mail2" type="email" required pattern="[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+"><br />
+            <br /><br />
+            </label>
+            
+        <input type="submit" value="Send">
+    </form>
+    <script>
+        function checkPasswordandEmails(){
+            var pass1=document.getElementById("pass1");
+            var pass2=document.getElementById("pass2");
+            var mail1=document.getElementById("mail1");
+            var mail2=document.getElementById("mail2");
+            if(pass1.value!=pass2.value && mail1.value!=mail2.value){
+                alert("Passwords and Emails do not match");
+                return false;
+            }
+            else if(pass1.value!=pass2.value && mail1.value==mail2.value){
+                alert("Passwords do not match");
+                return false;
+            }
+            else if(pass1.value==pass2.value && mail1.value!=mail2.value){
+                alert("Emails do not match");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

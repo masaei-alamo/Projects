@@ -1,0 +1,16 @@
+input.valid{background-color: rgb(160, 243, 160);}
+input.invalid{background-color:rgb(244, 101, 101);}
+label :valid{background-color: rgb(160, 243, 160);}
+label :invalid{background-color:rgb(244, 101, 101);}
+
+body{background-color: ghostwhite;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:large;  
+}
+h1{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
